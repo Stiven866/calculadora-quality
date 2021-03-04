@@ -5,11 +5,15 @@ export default function Suma() {
     num1: "",
     num2: "",
   });
+  const [result, setResult] = useState("");
 
   const handleOnClik = () => {
     fetch("http://localhost:8081/suma?num1=" + data.num1 + "&num2=" + data.num2)
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        setResult(data);
+        console.log(data);
+      });
   };
 
   const handleChange = (event) => {
@@ -51,7 +55,8 @@ export default function Suma() {
       >
         Resultado
       </button>
-      <h3>Resultado:</h3>
+      <h3>Resultado:{result.result}</h3>
+      <h3>Status:{result.status}</h3>
     </div>
   );
 }
